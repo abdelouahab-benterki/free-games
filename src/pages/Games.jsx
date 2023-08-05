@@ -1,11 +1,9 @@
-// React
-import { useState } from "react";
-
 // Api hooks
 import { useGetGamesQuery } from "../features/api/apiSlice";
 
 // Redux, Redux toolkit
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../features/page/pageSlice";
 
 // Components
 import GamesListItem from "../components/GamesListItem";
@@ -15,10 +13,11 @@ import SaveModal from "../components/SaveModal";
 const Games = () => {
   const numberOfItems = 18;
 
-  const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
 
   const filters = useSelector((state) => state.filter);
   const saveModal = useSelector((state) => state.saveModal.visible);
+  const page = useSelector((state) => state.page.page);
 
   const { data: data, isLoading, isSuccess } = useGetGamesQuery(filters);
 
@@ -32,13 +31,13 @@ const Games = () => {
     return <Spinner />;
   } else if (isSuccess) {
     // Pagination Creation Logic
-    for (let i = 1; i < Math.ceil(data.length / numberOfItems); i++) {
+    for (let i = 1; i <= Math.ceil(data.length / numberOfItems); i++) {
       items.push(
         <div
           key={i}
           className="bg-blueColor text-whiteColor text-lg rounded-full w-8 h-8 p-6 border-2 border-transparent flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-blueColor hover:border-blueColor transition"
           onClick={() => {
-            setPage(i);
+            dispatch(setPage(i - 1));
             window.scrollTo({
               top: 0,
               left: 0,

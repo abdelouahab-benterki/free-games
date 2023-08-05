@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Redux, Redux toolkit
 import { useDispatch } from "react-redux";
 import { filterChange } from "../features/filter/filterSlice";
+import { setPage } from "../features/page/pageSlice";
 
 const FilterBox = ({ name, options }) => {
   const [filterHeight, setFilterHeight] = useState(0);
@@ -47,6 +48,7 @@ const FilterBox = ({ name, options }) => {
         {options.map((option, i) => (
           <button
             onClick={() => {
+              dispatch(setPage(0));
               dispatch(
                 filterChange({
                   name: name.replace("-", "").replace(/\s/g, ""),
