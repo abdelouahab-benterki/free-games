@@ -79,7 +79,7 @@ const Games = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 justify-center items-center xl:grid-cols-3 gap-4 my-6">
           {content}
         </div>
-        <div className="flex justify-center items-center flex-wrap gap-2 my-4 px-44">
+        <div className="flex justify-center items-center flex-wrap gap-2 my-4 xl:px-44">
           {items}
         </div>
         {saveModal && <SaveModal />}

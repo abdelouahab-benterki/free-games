@@ -20,7 +20,7 @@ const RootLayout = () => {
         <div className="container py-4">
           <nav className="flex justify-between items-center">
             <NavLink to="/">
-              <div className="font-['impact'] text-2xl capitalize">
+              <div className="font-['anton'] text-2xl capitalize">
                 free games
               </div>
             </NavLink>
